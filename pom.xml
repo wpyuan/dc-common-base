@@ -16,6 +16,7 @@
 
     <properties>
         <java.version>1.8</java.version>
+        <spring-beans.version>5.3.3</spring-beans.version>
         <spring-web.version>5.3.3</spring-web.version>
         <mybatis-crud.version>0.4.4</mybatis-crud.version>
         <commons-collections.version>3.2.2</commons-collections.version>
@@ -23,23 +24,28 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter</artifactId>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-beans</artifactId>
+            <version>${spring-beans.version}</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-web</artifactId>
             <version>${spring-web.version}</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>com.github.wpyuan</groupId>
             <artifactId>mybatis-crud</artifactId>
             <version>${mybatis-crud.version}</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>commons-collections</groupId>
             <artifactId>commons-collections</artifactId>
             <version>${commons-collections.version}</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 
