@@ -149,9 +149,9 @@
     </licenses>
     <scm>
         <tag>master</tag>
-        <url>git:https://github.com/wpyuan/default-core.git</url>
-        <connection>scm:git:https://github.com/wpyuan/default-core.git</connection>
-        <developerConnection>scm:git:https://github.com/wpyuan/default-core.git</developerConnection>
+        <url>git:https://github.com/wpyuan/dc-common-base.git</url>
+        <connection>scm:git:https://github.com/wpyuan/dc-common-base.git</connection>
+        <developerConnection>scm:git:https://github.com/wpyuan/dc-common-base.git</developerConnection>
     </scm>
     <developers>
         <developer>
