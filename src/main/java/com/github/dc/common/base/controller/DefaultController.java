@@ -1,6 +1,6 @@
-package com.github.wpyuan.dccommonbase.controller;
+package com.github.dc.common.base.controller;
 
-import com.github.wpyuan.dccommonbase.service.DefaultService;
+import com.github.dc.common.base.service.DefaultService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

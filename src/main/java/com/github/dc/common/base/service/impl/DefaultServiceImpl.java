@@ -1,12 +1,12 @@
-package com.github.wpyuan.dccommonbase.service.impl;
+package com.github.dc.common.base.service.impl;
 
+import com.github.dc.common.base.service.DefaultService;
 import com.github.mybatis.crud.mapper.BatchInsertMapper;
 import com.github.mybatis.crud.mapper.DefaultMapper;
 import com.github.mybatis.crud.structure.Condition;
 import com.github.mybatis.crud.structure.LeftJoin;
 import com.github.mybatis.crud.util.EntityUtil;
 import com.github.mybatis.crud.util.ReflectionUtil;
-import com.github.wpyuan.dccommonbase.service.DefaultService;
 import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Propagation;

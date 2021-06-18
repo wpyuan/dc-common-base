@@ -1,4 +1,4 @@
-package com.github.wpyuan.dccommonbase.service;
+package com.github.dc.common.base.service;
 
 import com.github.mybatis.crud.structure.Condition;
 import com.github.mybatis.crud.structure.LeftJoin;
