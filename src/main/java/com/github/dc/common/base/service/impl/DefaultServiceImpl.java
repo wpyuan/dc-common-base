@@ -5,6 +5,7 @@ import com.github.mybatis.crud.mapper.BatchInsertMapper;
 import com.github.mybatis.crud.mapper.DefaultMapper;
 import com.github.mybatis.crud.structure.Condition;
 import com.github.mybatis.crud.structure.LeftJoin;
+import com.github.mybatis.crud.structure.Three;
 import com.github.mybatis.crud.util.EntityUtil;
 import com.github.mybatis.crud.util.ReflectionUtil;
 import org.apache.commons.collections.CollectionUtils;
@@ -113,6 +114,32 @@ public class DefaultServiceImpl<E> implements DefaultService<E> {
             updateCount += defaultMapper.updateField(entity, fields);
         }
         return updateCount;
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public int save(E entity) {
+        int affectedCount = 0;
+        Three<String, Object, Class> id = EntityUtil.getIdNameAndValueAndType(entity);
+        if (id.getSecond() == null) {
+            affectedCount = defaultMapper.insert(entity);
+        } else {
+            affectedCount = defaultMapper.updateByPrimaryKey(entity);
+        }
+        return affectedCount;
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public int saveSelective(E entity) {
+        int affectedCount = 0;
+        Three<String, Object, Class> id = EntityUtil.getIdNameAndValueAndType(entity);
+        if (id.getSecond() == null) {
+            affectedCount = defaultMapper.insertSelective(entity);
+        } else {
+            affectedCount = defaultMapper.updateByPrimaryKeySelective(entity);
+        }
+        return affectedCount;
     }
 
     @Override

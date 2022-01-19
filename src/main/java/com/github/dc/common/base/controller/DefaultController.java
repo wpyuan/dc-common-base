@@ -1,8 +1,11 @@
 package com.github.dc.common.base.controller;
 
+import com.github.dc.common.base.coverter.DateConverter;
 import com.github.dc.common.base.service.DefaultService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.convert.support.GenericConversionService;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -53,5 +56,13 @@ public class DefaultController<E> {
     @GetMapping("/list")
     public ResponseEntity<List<E>> list(E entity) {
         return ResponseEntity.ok(service.list(entity));
+    }
+
+    @InitBinder
+    public void initBinder(WebDataBinder binder) {
+        GenericConversionService genericConversionService = (GenericConversionService) binder.getConversionService();
+        if (genericConversionService != null) {
+            genericConversionService.addConverter(new DateConverter());
+        }
     }
 }
