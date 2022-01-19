@@ -122,7 +122,7 @@ public class DefaultServiceImpl<E> implements DefaultService<E> {
         int affectedCount = 0;
         Three<String, Object, Class> id = EntityUtil.getIdNameAndValueAndType(entity);
         if (id.getSecond() == null) {
-            affectedCount = defaultMapper.insert(entity);
+            affectedCount = defaultMapper.insertSelective(entity);
         } else {
             affectedCount = defaultMapper.updateByPrimaryKey(entity);
         }

@@ -113,7 +113,7 @@ public interface DefaultService<E> {
     int batchUpdateField(List<E> list, String... fields);
 
     /**
-     * 全字段保存，主键不为null则插入，否则根据主键覆盖更新
+     * 保存，主键不为null则插入有值的字段，否则根据主键覆盖更新
      *
      * @param entity 实体类
      * @return 是否保存成功
