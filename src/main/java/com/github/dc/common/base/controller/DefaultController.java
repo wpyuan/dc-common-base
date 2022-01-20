@@ -48,6 +48,12 @@ public class DefaultController<E> {
         return ResponseEntity.ok(entity);
     }
 
+    @PostMapping("/save")
+    public ResponseEntity<E> save(@RequestBody E entity) {
+        service.save(entity);
+        return ResponseEntity.ok(entity);
+    }
+
     @GetMapping("/detail")
     public ResponseEntity<E> detail(E entity) {
         return ResponseEntity.ok(service.detail(entity));
