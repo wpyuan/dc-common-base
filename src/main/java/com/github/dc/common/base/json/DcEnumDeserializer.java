@@ -6,7 +6,7 @@ import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.JsonNodeType;
-import com.github.dc.common.base.structure.IEnum;
+import com.github.dc.common.base.structure.BaseEnum;
 import com.github.mybatis.crud.util.StringUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
@@ -27,9 +27,9 @@ import java.util.Collection;
  * @date 2022/1/21 9:55
  */
 @Slf4j
-public class DcEnumDeserializer<V, D> extends JsonDeserializer<IEnum<V, D>> {
+public class DcEnumDeserializer<V, D> extends JsonDeserializer<BaseEnum<V, D>> {
     @Override
-    public IEnum<V, D> deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException {
+    public BaseEnum<V, D> deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException {
         JsonNode node = jsonParser.getCodec().readTree(jsonParser);
         String enumFieldName = jsonParser.currentName();
         Object target = jsonParser.getCurrentValue();
@@ -63,7 +63,7 @@ public class DcEnumDeserializer<V, D> extends JsonDeserializer<IEnum<V, D>> {
             for (Object obj : enumFieldClass.getEnumConstants()) {
                 String value = String.valueOf(ReflectionUtils.getField(ReflectionUtils.findField(enumFieldClass, "value"), obj));
                 if (node.asText().equals(value)) {
-                    return (IEnum<V, D>) obj;
+                    return (BaseEnum<V, D>) obj;
                 }
             }
         } else {
@@ -73,9 +73,9 @@ public class DcEnumDeserializer<V, D> extends JsonDeserializer<IEnum<V, D>> {
                 name = node.get("value").asText();
             }
         }
-        IEnum<V, D> iEnum = null;
+        BaseEnum<V, D> iEnum = null;
         if (StringUtil.isNotBlank(name)) {
-            iEnum = (IEnum<V, D>) Enum.valueOf(enumFieldClass, name);
+            iEnum = (BaseEnum<V, D>) Enum.valueOf(enumFieldClass, name);
         }
         return iEnum;
     }

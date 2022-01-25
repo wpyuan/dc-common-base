@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.github.dc.common.base.json.DcEnumDeserializer;
 import com.github.dc.common.base.json.DcEnumSerializer;
+import com.github.mybatis.crud.type.IEnum;
 
 import java.util.Map;
 
@@ -17,22 +18,5 @@ import java.util.Map;
  */
 @JsonDeserialize(using = DcEnumDeserializer.class)
 @JsonSerialize(using = DcEnumSerializer.class)
-public interface IEnum<V, D> {
-    /**
-     * 值，枚举的name属性
-     * @return 值
-     */
-    V value();
-
-    /**
-     * 描述，枚举的desc属性
-     * @return 描述
-     */
-    D desc();
-
-    /**
-     * 所有枚举值与描述
-     * @return 所有枚举值与描述
-     */
-    Map<V, D> all();
+public interface BaseEnum<V, D> extends IEnum<V, D> {
 }

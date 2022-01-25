@@ -9,7 +9,7 @@
     </parent>
     <groupId>com.github.wpyuan</groupId>
     <artifactId>dc-common-base</artifactId>
-    <version>0.5.0</version>
+    <version>0.6.0</version>
     <name>dc-common-base</name>
     <description>dc frame common base project for Spring Boot</description>
     <packaging>jar</packaging>
@@ -18,9 +18,11 @@
         <java.version>1.8</java.version>
         <spring-beans.version>5.3.14</spring-beans.version>
         <spring-web.version>5.3.14</spring-web.version>
-        <mybatis-crud.version>0.5.4</mybatis-crud.version>
+        <spring-webmvc.version>5.3.14</spring-webmvc.version>
+        <mybatis-crud.version>0.6.0</mybatis-crud.version>
         <commons-collections.version>3.2.2</commons-collections.version>
         <jackson-databind.version>2.11.3</jackson-databind.version>
+        <reflections.version>0.10.2</reflections.version>
     </properties>
 
     <dependencies>
@@ -52,6 +54,17 @@
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
             <version>${jackson-databind.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.reflections</groupId>
+            <artifactId>reflections</artifactId>
+            <version>${reflections.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>${spring-webmvc.version}</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>

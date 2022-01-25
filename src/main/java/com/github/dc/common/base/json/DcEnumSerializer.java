@@ -3,7 +3,7 @@ package com.github.dc.common.base.json;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.SerializerProvider;
-import com.github.dc.common.base.structure.IEnum;
+import com.github.dc.common.base.structure.BaseEnum;
 
 import java.io.IOException;
 
@@ -15,10 +15,10 @@ import java.io.IOException;
  * @author wangpeiyuan
  * @date 2022/1/21 9:51
  */
-public class DcEnumSerializer<V, D> extends JsonSerializer<IEnum<V, D>> {
+public class DcEnumSerializer<V, D> extends JsonSerializer<BaseEnum<V, D>> {
 
     @Override
-    public void serialize(IEnum<V, D> kviEnum, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException {
+    public void serialize(BaseEnum<V, D> kviEnum, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException {
         jsonGenerator.writeStartObject();
         jsonGenerator.writeObjectField("value", kviEnum.value());
         jsonGenerator.writeObjectField("desc", kviEnum.desc());
