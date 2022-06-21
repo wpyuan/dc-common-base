@@ -17,7 +17,7 @@ public interface DefaultService<E> {
      * @param entity 实体类
      * @return 是否插入成功
      */
-    Boolean insert(E entity);
+    int insert(E entity);
 
     /**
      * 有值的字段插入
@@ -25,7 +25,7 @@ public interface DefaultService<E> {
      * @param entity 实体类
      * @return 是否插入成功
      */
-    Boolean insertSelective(E entity);
+    int insertSelective(E entity);
 
     /**
      * 全字段插入

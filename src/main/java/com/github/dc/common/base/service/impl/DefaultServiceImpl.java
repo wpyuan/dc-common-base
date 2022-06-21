@@ -28,14 +28,14 @@ public class DefaultServiceImpl<E> implements DefaultService<E> {
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public Boolean insert(E entity) {
-        return defaultMapper.insert(entity) == 1;
+    public int insert(E entity) {
+        return defaultMapper.insert(entity);
     }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public Boolean insertSelective(E entity) {
-        return defaultMapper.insertSelective(entity) == 1;
+    public int insertSelective(E entity) {
+        return defaultMapper.insertSelective(entity);
     }
 
     @Override
@@ -91,7 +91,7 @@ public class DefaultServiceImpl<E> implements DefaultService<E> {
     public int batchUpdate(List<E> list) {
         int updateCount = 0;
         for (E entity : list) {
-            updateCount += defaultMapper.updateByPrimaryKey(entity);
+            updateCount += this.updateByPrimaryKey(entity);
         }
         return updateCount;
     }
@@ -101,7 +101,7 @@ public class DefaultServiceImpl<E> implements DefaultService<E> {
     public int batchUpdateSelective(List<E> list) {
         int updateCount = 0;
         for (E entity : list) {
-            updateCount += defaultMapper.updateByPrimaryKeySelective(entity);
+            updateCount += this.updateByPrimaryKeySelective(entity);
         }
         return updateCount;
     }
@@ -111,7 +111,7 @@ public class DefaultServiceImpl<E> implements DefaultService<E> {
     public int batchUpdateField(List<E> list, String... fields) {
         int updateCount = 0;
         for (E entity : list) {
-            updateCount += defaultMapper.updateField(entity, fields);
+            updateCount += this.updateField(entity, fields);
         }
         return updateCount;
     }
@@ -122,9 +122,9 @@ public class DefaultServiceImpl<E> implements DefaultService<E> {
         int affectedCount = 0;
         Three<String, Object, Class> id = EntityUtil.getIdNameAndValueAndType(entity);
         if (id.getSecond() == null) {
-            affectedCount = defaultMapper.insertSelective(entity);
+            affectedCount = this.insertSelective(entity);
         } else {
-            affectedCount = defaultMapper.updateByPrimaryKey(entity);
+            affectedCount = this.updateByPrimaryKey(entity);
         }
         return affectedCount;
     }
@@ -135,9 +135,9 @@ public class DefaultServiceImpl<E> implements DefaultService<E> {
         int affectedCount = 0;
         Three<String, Object, Class> id = EntityUtil.getIdNameAndValueAndType(entity);
         if (id.getSecond() == null) {
-            affectedCount = defaultMapper.insertSelective(entity);
+            affectedCount = this.insertSelective(entity);
         } else {
-            affectedCount = defaultMapper.updateByPrimaryKeySelective(entity);
+            affectedCount = this.updateByPrimaryKeySelective(entity);
         }
         return affectedCount;
     }
