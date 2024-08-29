@@ -13,8 +13,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.io.Serializable;
 import java.lang.reflect.Method;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * @author PeiYuan
@@ -48,6 +50,12 @@ public class DefaultServiceImpl<E> implements DefaultService<E> {
     @Transactional(rollbackFor = Exception.class)
     public void batchInsertSelective(List<E> list) {
         batchInsertMapper.batchInsertSelective(list);
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public int deleteByPrimaryKey(Serializable id) {
+        return defaultMapper.deleteByPrimaryKey(id);
     }
 
     @Override
@@ -144,8 +152,20 @@ public class DefaultServiceImpl<E> implements DefaultService<E> {
 
     @Override
     @Transactional(rollbackFor = Exception.class, propagation = Propagation.NOT_SUPPORTED)
+    public E selectByPrimaryKey(Serializable id) {
+        return defaultMapper.selectByPrimaryKey(id);
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class, propagation = Propagation.NOT_SUPPORTED)
     public E selectByPrimaryKey(E entity) {
         return defaultMapper.selectByPrimaryKey(entity);
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class, propagation = Propagation.NOT_SUPPORTED)
+    public List<E> listAll() {
+        return defaultMapper.listAll();
     }
 
     @Override
@@ -157,6 +177,9 @@ public class DefaultServiceImpl<E> implements DefaultService<E> {
     @Override
     @Transactional(rollbackFor = Exception.class, propagation = Propagation.NOT_SUPPORTED)
     public List<E> list(E entity) {
+        if (entity == null) {
+            return this.listAll();
+        }
         Condition<E> condition = this.createEqCondition(entity);
         if (CollectionUtils.isEmpty(condition.getWheres())) {
             condition.diy(null, null, "1", "=", 1, null);
@@ -173,6 +196,7 @@ public class DefaultServiceImpl<E> implements DefaultService<E> {
     @Override
     @Transactional(rollbackFor = Exception.class, propagation = Propagation.NOT_SUPPORTED)
     public E detail(E entity) {
+        Objects.requireNonNull(entity, "单条明细的查询条件不能为空");
         return this.detail(this.createEqCondition(entity));
     }
 

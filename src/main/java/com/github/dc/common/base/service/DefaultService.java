@@ -3,6 +3,7 @@ package com.github.dc.common.base.service;
 import com.github.mybatis.crud.structure.Condition;
 import com.github.mybatis.crud.structure.LeftJoin;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -38,6 +39,14 @@ public interface DefaultService<E> {
      * @param list 实体集合
      */
     void batchInsertSelective(List<E> list);
+
+    /**
+     * 根据主键删除记录
+     *
+     * @param id 主键
+     * @return 影响条数
+     */
+    int deleteByPrimaryKey(Serializable id);
 
     /**
      * 根据主键删除记录
@@ -106,7 +115,7 @@ public interface DefaultService<E> {
     /**
      * 批量根据主键更新指定列
      *
-     * @param list 实体集合
+     * @param list   实体集合
      * @param fields 指定列
      * @return 影响条数
      */
@@ -131,10 +140,25 @@ public interface DefaultService<E> {
     /**
      * 根据主键查询
      *
+     * @param id 主键
+     * @return 查询结果
+     */
+    E selectByPrimaryKey(Serializable id);
+
+    /**
+     * 根据主键查询
+     *
      * @param entity 实体类
      * @return 查询结果
      */
     E selectByPrimaryKey(E entity);
+
+    /**
+     * 查询所有，慎用
+     *
+     * @return 查询结果
+     */
+    List<E> listAll();
 
     /**
      * 根据条件查询列表

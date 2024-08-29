@@ -9,7 +9,7 @@
     </parent>
     <groupId>com.github.wpyuan</groupId>
     <artifactId>dc-common-base</artifactId>
-    <version>0.8.0</version>
+    <version>0.9.0</version>
     <name>dc-common-base</name>
     <description>dc frame common base project for Spring Boot</description>
     <packaging>jar</packaging>
@@ -34,7 +34,7 @@
         <dependency>
             <groupId>com.github.wpyuan</groupId>
             <artifactId>mybatis-crud</artifactId>
-            <version>0.7.2</version>
+            <version>0.12.0</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -65,6 +65,12 @@
             <artifactId>swagger-annotations</artifactId>
             <version>1.5.20</version>
             <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.16</version>
+            <optional>true</optional>
         </dependency>
     </dependencies>
 
@@ -162,18 +168,19 @@
                 <!--                    <skip>true</skip>-->
                 <!--                </configuration>-->
             </plugin>
-            <plugin>
-                <groupId>org.owasp</groupId>
-                <artifactId>dependency-check-maven</artifactId>
-                <version>6.2.2</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>check</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
+            <!-- check耗时太长，先注释，必要时启用 -->
+<!--            <plugin>-->
+<!--                <groupId>org.owasp</groupId>-->
+<!--                <artifactId>dependency-check-maven</artifactId>-->
+<!--                <version>6.2.2</version>-->
+<!--                <executions>-->
+<!--                    <execution>-->
+<!--                        <goals>-->
+<!--                            <goal>check</goal>-->
+<!--                        </goals>-->
+<!--                    </execution>-->
+<!--                </executions>-->
+<!--            </plugin>-->
         </plugins>
     </build>
 
