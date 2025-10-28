@@ -31,20 +31,20 @@ public class DefaultController<E> {
     }
 
     @ApiOperation("删除")
-    @DeleteMapping("/remove")
+    @RequestMapping(value = "/remove", method = {RequestMethod.DELETE, RequestMethod.GET})
     public ResponseEntity<Integer> remove(E entity) {
         return ResponseEntity.ok(service.delete(entity));
     }
 
     @ApiOperation("修改")
-    @PutMapping("/update-form")
+    @RequestMapping(value = "/update-form", method = {RequestMethod.PUT, RequestMethod.GET})
     public ResponseEntity<E> updateByForm(E entity) {
         service.updateByPrimaryKey(entity);
         return ResponseEntity.ok(entity);
     }
 
     @ApiOperation("修改")
-    @PutMapping("/update")
+    @RequestMapping(value = "/update", method = {RequestMethod.PUT, RequestMethod.POST})
     public ResponseEntity<E> update(@RequestBody E entity) {
         service.updateByPrimaryKey(entity);
         return ResponseEntity.ok(entity);
