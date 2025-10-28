@@ -32,9 +32,8 @@ public class DefaultController<E> {
 
     @ApiOperation("删除")
     @DeleteMapping("/remove")
-    public ResponseEntity<?> remove(E entity) {
-        service.delete(entity);
-        return ResponseEntity.ok().build();
+    public ResponseEntity<Integer> remove(E entity) {
+        return ResponseEntity.ok(service.delete(entity));
     }
 
     @ApiOperation("修改")
